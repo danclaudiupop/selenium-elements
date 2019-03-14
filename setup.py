@@ -51,7 +51,7 @@ setup(
     keywords=['selenium', 'tests', 'page model'],
     python_requires='>=3.7',
     install_requires=[
-        'selenium==3.141.0'
+        'selenium',
     ],
     extras_require={},
 )

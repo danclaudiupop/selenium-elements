@@ -8,23 +8,22 @@ Overview
     :stub-columns: 1
 
     * - tests
-      - | |travis| |requires|
-        | |codecov|
+      - | |travis| |dependabot| |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
 
 .. |travis| image:: https://travis-ci.org/danclaudiupop/selenium-elements.svg?branch=master
     :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/danclaudiupop/selenium_elements
+    :target: https://travis-ci.org/danclaudiupop/selenium-elements
 
-.. |requires| image:: https://requires.io/github/danclaudiupop/selenium-elements/requirements.svg?branch=master
-    :alt: Requirements Status
-    :target: https://requires.io/github/danclaudiupop/selenium_elements/requirements/?branch=master
+.. |dependabot| image:: https://api.dependabot.com/badges/status?host=github&repo=danclaudiupop/selenium-elements
+   :alt: Dependabot
+   :target: https://dependabot.com
 
 .. |codecov| image:: https://codecov.io/github/danclaudiupop/selenium-elements/coverage.svg?branch=master
     :alt: Coverage Status
-    :target: https://codecov.io/github/danclaudiupop/selenium_elements
+    :target: https://codecov.io/github/danclaudiupop/selenium-elements
 
 .. |version| image:: https://img.shields.io/pypi/v/selenium-elements.svg
     :alt: PyPI Package latest release
@@ -32,7 +31,7 @@ Overview
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/danclaudiupop/selenium-elements/v0.0.0.svg
     :alt: Commits since latest release
-    :target: https://github.com/danclaudiupop/selenium_elements/compare/v0.0.0...master
+    :target: https://github.com/danclaudiupop/selenium-elements/compare/v0.0.0...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/selenium-elements.svg
     :alt: PyPI Wheel
