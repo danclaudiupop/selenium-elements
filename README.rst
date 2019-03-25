@@ -29,9 +29,9 @@ Overview
     :alt: PyPI Package latest release
     :target: https://pypi.org/project/selenium-elements
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/danclaudiupop/selenium-elements/v0.0.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/danclaudiupop/selenium-elements/v0.0.1.svg
     :alt: Commits since latest release
-    :target: https://github.com/danclaudiupop/selenium-elements/compare/v0.0.0...master
+    :target: https://github.com/danclaudiupop/selenium-elements/compare/v0.0.1...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/selenium-elements.svg
     :alt: PyPI Wheel
