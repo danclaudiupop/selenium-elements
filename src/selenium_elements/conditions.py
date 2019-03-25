@@ -45,7 +45,7 @@ def _element_visible(driver, by, root_element=None):
         element = _find_element_on_region(by, root_element)
 
     if not element.is_displayed():
-        raise ElementNotVisibleError(f'Element ({by}) not visible.')
+        raise ElementNotVisibleError(f"Element ({by}) not visible.")
     return element
 
 
@@ -90,7 +90,7 @@ class clickable:
 
         if element.is_enabled():
             return element
-        raise ElementNotClickableError(f'Element ({self.locator}) not clickable.')
+        raise ElementNotClickableError(f"Element ({self.locator}) not clickable.")
 
 
 class selected:
@@ -103,7 +103,7 @@ class selected:
 
         if element.is_selected():
             return element
-        raise ElementSelectedError(f'Element ({self.locator}) not selected.')
+        raise ElementSelectedError(f"Element ({self.locator}) not selected.")
 
 
 class visibility_of_any_elements(EC.visibility_of_any_elements_located):

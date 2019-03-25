@@ -7,7 +7,7 @@ class ValidationError(Exception):
 
     @property
     def message(self):
-        return '\n'.join(self.errors)
+        return "\n".join(self.errors)
 
 
 class title_matches:

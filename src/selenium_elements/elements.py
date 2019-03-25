@@ -15,64 +15,73 @@ from .types import checkedmeta
 
 
 def list_by_fields():
-    return {k: v for k, v in vars(By).items() if not k.startswith('_')}
+    return {k: v for k, v in vars(By).items() if not k.startswith("_")}
 
 
 def validate_by(by):
     if by not in list_by_fields().values():
-        raise TypeError(f'Unsupported locator strategy: {by}')
+        raise TypeError(f"Unsupported locator strategy: {by}")
     return by
 
 
 class PageElement:
     def __init__(
-        self, by, value, timeout=5, condition=present, wait_type='until', cache=False
+        self,
+        by,
+        value,
+        timeout=5,
+        condition=present,
+        wait_type="until",
+        cache=False,
+        find_on_page_load=False,
     ):
         self.by = validate_by(by)
         self.value = value
         self.timeout = timeout
         self.condition = condition
-        wait_types = ['until', 'until_not']
+        wait_types = ["until", "until_not"]
         assert wait_type in wait_types, (
-            f'wait_type should be one of the following:' f' {wait_types}'
+            f"wait_type should be one of the following:" f" {wait_types}"
         )
         self.wait_type = wait_type
         self.cache = cache
+        self.find_on_page_load = find_on_page_load
 
     @lru_cache(maxsize=128)
     def find(self, instance):
         driver = instance.driver
         page_class_name = instance.__class__.__name__
-        root_element = getattr(instance, 'root_element', None)
+        root_element = getattr(instance, "root_element", None)
 
         wait = getattr(WebDriverWait(driver, self.timeout), self.wait_type)
 
         message = (
-            f'{self.__class__.__name__}('
+            f"{self.__class__.__name__}("
             f'by="{self.by}",'
             f' value="{self.value}",'
             f' timeout="{self.timeout}",'
-            f' condition={self.condition.__name__},'
+            f" condition={self.condition.__name__},"
             f' wait_type="{self.wait_type}",'
             f' cache="{self.cache}",'
-            f' root_element="{root_element}")'
+            f' root_element="{root_element}",'
+            f" find_on_page_load={self.find_on_page_load}),"
         )
         if root_element:
             return wait(
                 self.condition(
                     locator=(self.by, self.value), root_element=root_element
                 ),
-                message=f'{message} not found on {page_class_name} Region',
+                message=f"{message} not found on {page_class_name} Region",
             )
         return wait(
             self.condition(locator=(self.by, self.value)),
-            message=f'{message} not found on {page_class_name} Page',
+            message=f"{message} not found on {page_class_name} Page",
         )
 
     def to_locator(self):
         return self.by, self.value
 
-    def __get__(self, instance, owner) -> Union[WebElement, 'PageElement']:
+    def __get__(self, instance, owner) -> Union[WebElement, "PageElement"]:
         if instance is None:
             return self
         if self.cache:
@@ -81,8 +90,9 @@ class PageElement:
 
     def __repr__(self):
         return (
-            f'<{self.__class__.__name__}(by="{self.by}", value="{self.value},'
-            f' condition={self.condition.__name__}, timeout="{self.timeout}")>'
+            f'<{self.__class__.__name__}(by="{self.by}", value="{self.value}",'
+            f' condition={self.condition.__name__}, timeout="{self.timeout}",'
+            f" find_on_page_load={self.find_on_page_load})>"
         )
 
 
@@ -93,8 +103,9 @@ class PageElements(PageElement):
         value,
         condition=all_present,
         timeout=5,
-        wait_type='until',
+        wait_type="until",
         cache=False,
+        find_on_page_load=False,
     ):
         super().__init__(
             by,
@@ -103,9 +114,10 @@ class PageElements(PageElement):
             timeout=timeout,
             wait_type=wait_type,
             cache=cache,
+            find_on_page_load=find_on_page_load,
         )
 
-    def __get__(self, instance, owner) -> Union[List[WebElement], 'PageElements']:
+    def __get__(self, instance, owner) -> Union[List[WebElement], "PageElements"]:
         if instance is None:
             return self
         if self.cache:
