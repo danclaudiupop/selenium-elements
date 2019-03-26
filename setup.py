@@ -24,7 +24,7 @@ def read(*names, **kwargs):
 
 setup(
     name="selenium-elements",
-    version="version='0.0.1'",
+    version="0.0.1",
     license="BSD 2-Clause License",
     description="Page object model made easy.",
     long_description=re.compile("^.. start-badges.*^.. end-badges", re.M | re.S).sub(
